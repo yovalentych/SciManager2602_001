@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Авторизація</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Ласкаво просимо до SciPaperManager</h1>
+
+    <!-- Форма реєстрації -->
+    <h2>Реєстрація</h2>
+    <form id="registerForm">
+      <input type="text" id="regUsername" placeholder="Username" required />
+      <input type="email" id="regEmail" placeholder="Email" required />
+      <input type="password" id="regPassword" placeholder="Пароль" required />
+      <input
+        type="text"
+        id="regFirstNameUa"
+        placeholder="Ім'я (укр)"
+        required
+      />
+      <input
+        type="text"
+        id="regLastNameUa"
+        placeholder="Прізвище (укр)"
+        required
+      />
+      <input
+        type="text"
+        id="regFirstNameEn"
+        placeholder="Ім'я (лат)"
+        required
+      />
+      <input
+        type="text"
+        id="regLastNameEn"
+        placeholder="Прізвище (лат)"
+        required
+      />
+      <button type="submit">Зареєструватися</button>
+    </form>
+
+    <!-- Форма логіну -->
+    <h2>Вхід</h2>
+    <form id="loginForm">
+      <input
+        type="text"
+        id="loginEmailOrUsername"
+        placeholder="Email або Username"
+        required
+      />
+      <input type="password" id="loginPassword" placeholder="Пароль" required />
+      <button type="submit">Увійти</button>
+    </form>
+
+    <script src="script.js"></script>
+  </body>
+</html>
