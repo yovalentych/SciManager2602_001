@@ -15,22 +15,20 @@ app.use(express.json()); // Дозволяє обробляти JSON-запит�
 app.use(cors()); // Дозволяє запити з іншого домену (для фронтенду)
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Головний маршрут для перевірки роботи сервера
-app.get('/', (req, res) => {
-  res.send('API працює!');
-});
-
-const authRoutes = require('./routes/authRoutes');
-app.use('/api/auth', authRoutes);
-
+// Головний маршрут: віддає `index.html`
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-app.use('/uploads', express.static('uploads'));
+// Підключення маршрутів
+const authRoutes = require('./routes/authRoutes');
+app.use('/api/auth', authRoutes);
 
-// Підтягування папки PUBLIC
-app.use(express.static(path.join(__dirname, 'public')));
+const achievementRoutes = require('./routes/achievRoutes'); // Оновлено після перейменування
+app.use('/api/achievements', achievementRoutes);
+
+// Статичні файли (завантаження фото)
+app.use('/uploads', express.static('public/uploads'));
 
 // Запуск сервера
 app.listen(PORT, () => {

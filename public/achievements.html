@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Мої досягнення</title>
+    <link rel="stylesheet" href="achievements.css" />
+  </head>
+  <body>
+    <div class="dashboard">
+      <h2>Мої досягнення</h2>
+      <button id="addAchievement">+ Додати досягнення</button>
+
+      <div id="achievementsList" class="timeline">
+        <!-- Сюди будуть додаватися досягнення -->
+      </div>
+    </div>
+
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <h3>Додати досягнення</h3>
+        <form id="achievementForm">
+          <label
+            >Тип події:
+            <select id="type">
+              <option value="conference">Конференція</option>
+              <option value="publication">Публікація</option>
+              <option value="grant">Грант</option>
+              <option value="contest">Конкурс</option>
+              <option value="lecture">Відкрита лекція</option>
+            </select>
+          </label>
+          <label>Назва: <input type="text" id="title" required /></label>
+          <label>Дата: <input type="date" id="date" required /></label>
+          <label>Місто: <input type="text" id="city" /></label>
+          <label>Країна: <input type="text" id="country" /></label>
+          <label>Інституція: <input type="text" id="institution" /></label>
+          <label>Посилання: <input type="url" id="links" /></label>
+          <label>Нотатки: <textarea id="notes"></textarea></label>
+
+          <label
+            >Завантажити сертифікати:
+            <input type="file" id="certificates" multiple />
+          </label>
+          <label
+            >Завантажити фото події:
+            <input type="file" id="eventPhotos" multiple />
+          </label>
+
+          <button type="submit">Зберегти</button>
+          <button type="button" id="closeModal">Закрити</button>
+        </form>
+      </div>
+    </div>
+
+    <script src="achievements.js"></script>
+  </body>
+</html>

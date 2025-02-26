@@ -2,7 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');
-const authMiddleware = require('../middleware/authMiddleware');
+const { checkAuth } = require('../middleware/authMiddleware'); // Оновлений імпорт
 const multer = require('multer');
 const moment = require('moment');
 
@@ -11,15 +11,15 @@ const router = express.Router();
 // Налаштування multer для завантаження аватарок
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, 'public/uploads/'); // Оновлено
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);
   },
 });
-const upload = multer({ storage: storage });
+const upload = multer({ storage });
 
-// Реєстрація користувача
+// 📌 Реєстрація користувача
 router.post('/register', async (req, res) => {
   try {
     const {
@@ -63,7 +63,7 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Логін користувача
+// 📌 Логін користувача
 router.post('/login', async (req, res) => {
   try {
     const { emailOrUsername, password } = req.body;
@@ -96,8 +96,8 @@ router.post('/login', async (req, res) => {
   }
 });
 
-// Отримання профілю
-router.get('/profile', authMiddleware, async (req, res) => {
+// 📌 Отримання профілю
+router.get('/profile', checkAuth, async (req, res) => {
   try {
     const user = await User.findById(req.user.userId).select('-password');
     if (!user) {
@@ -109,8 +109,8 @@ router.get('/profile', authMiddleware, async (req, res) => {
   }
 });
 
-// Оновлення профілю
-router.put('/profile', authMiddleware, async (req, res) => {
+// 📌 Оновлення профілю
+router.put('/profile', checkAuth, async (req, res) => {
   try {
     const {
       firstNameUa,
@@ -131,7 +131,7 @@ router.put('/profile', authMiddleware, async (req, res) => {
 
     let updateFields = { affiliation, position, website, socialLinks };
 
-    // Перевірка зміни імені раз на місяць
+    // 📌 Перевірка зміни імені раз на місяць
     if (firstNameUa || lastNameUa || firstNameEn || lastNameEn) {
       const lastUpdated = moment(user.lastNameChangeDate);
       const oneMonthAgo = moment().subtract(1, 'months');
@@ -149,13 +149,13 @@ router.put('/profile', authMiddleware, async (req, res) => {
       updateFields.lastNameChangeDate = new Date();
     }
 
-    // Якщо користувач хоче змінити пароль
+    // 📌 Якщо користувач хоче змінити пароль
     if (password) {
       const salt = await bcrypt.genSalt(10);
       updateFields.password = await bcrypt.hash(password, salt);
     }
 
-    // Оновлення користувача
+    // 📌 Оновлення користувача
     const updatedUser = await User.findByIdAndUpdate(
       req.user.userId,
       updateFields,
@@ -167,31 +167,5 @@ router.put('/profile', authMiddleware, async (req, res) => {
     res.status(500).json({ message: 'Помилка сервера', error: error.message });
   }
 });
-
-// Завантаження аватарки
-router.post(
-  '/upload-avatar',
-  authMiddleware,
-  upload.single('avatar'),
-  async (req, res) => {
-    try {
-      if (!req.file) {
-        return res.status(400).json({ message: 'Файл не завантажено' });
-      }
-
-      const avatarUrl = `/uploads/${req.file.filename}`;
-      await User.findByIdAndUpdate(req.user.userId, { avatar: avatarUrl });
-
-      res.json({ avatarUrl, message: 'Аватар оновлено' });
-    } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: 'Помилка завантаження аватарки',
-          error: error.message,
-        });
-    }
-  }
-);
 
 module.exports = router;
