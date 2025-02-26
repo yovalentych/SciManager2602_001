@@ -3,12 +3,66 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Дашборд</title>
+    <title>Особистий кабінет</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <h1>Ласкаво просимо, <span id="username"></span>!</h1>
-    <p>Це ваш особистий кабінет.</p>
+
+    <h2>Ваш профіль</h2>
+    <div class="profile-container">
+      <table class="profile-table">
+        <tr>
+          <td><strong>Біографія:</strong></td>
+          <td><span id="bioDisplay"></span></td>
+          <td>
+            <button class="edit-btn" onclick="editField('bio')">✏️</button>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Афіліація:</strong></td>
+          <td><span id="affiliationDisplay"></span></td>
+          <td>
+            <button class="edit-btn" onclick="editField('affiliation')">
+              ✏️
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Посада:</strong></td>
+          <td><span id="positionDisplay"></span></td>
+          <td>
+            <button class="edit-btn" onclick="editField('position')">✏️</button>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Наукові інтереси:</strong></td>
+          <td><span id="researchInterestsDisplay"></span></td>
+          <td>
+            <button class="edit-btn" onclick="editField('researchInterests')">
+              ✏️
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td><strong>Сайт:</strong></td>
+          <td><a id="websiteDisplay" href="#" target="_blank"></a></td>
+          <td>
+            <button class="edit-btn" onclick="editField('website')">✏️</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>Редагування</h3>
+        <input type="text" id="editInput" />
+        <button onclick="saveChanges()">Зберегти</button>
+      </div>
+    </div>
+
     <button id="logout">Вийти</button>
 
     <script src="dashboard.js"></script>
