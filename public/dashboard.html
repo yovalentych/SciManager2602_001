@@ -3,67 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Особистий кабінет</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Дашборд | SciPaperManager</title>
+    <link rel="stylesheet" href="dashboard.css" />
   </head>
   <body>
-    <h1>Ласкаво просимо, <span id="username"></span>!</h1>
+    <header>
+      <h1>SciPaperManager</h1>
+      <nav>
+        <button id="logout">Вийти</button>
+      </nav>
+    </header>
 
-    <h2>Ваш профіль</h2>
-    <div class="profile-container">
-      <table class="profile-table">
-        <tr>
-          <td><strong>Біографія:</strong></td>
-          <td><span id="bioDisplay"></span></td>
-          <td>
-            <button class="edit-btn" onclick="editField('bio')">✏️</button>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Афіліація:</strong></td>
-          <td><span id="affiliationDisplay"></span></td>
-          <td>
-            <button class="edit-btn" onclick="editField('affiliation')">
-              ✏️
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Посада:</strong></td>
-          <td><span id="positionDisplay"></span></td>
-          <td>
-            <button class="edit-btn" onclick="editField('position')">✏️</button>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Наукові інтереси:</strong></td>
-          <td><span id="researchInterestsDisplay"></span></td>
-          <td>
-            <button class="edit-btn" onclick="editField('researchInterests')">
-              ✏️
-            </button>
-          </td>
-        </tr>
-        <tr>
-          <td><strong>Сайт:</strong></td>
-          <td><a id="websiteDisplay" href="#" target="_blank"></a></td>
-          <td>
-            <button class="edit-btn" onclick="editField('website')">✏️</button>
-          </td>
-        </tr>
-      </table>
+    <div class="dashboard-container">
+      <aside class="sidebar">
+        <ul>
+          <li><a href="#" onclick="loadPage('profile')">👤 Профіль</a></li>
+          <li>
+            <a href="#" onclick="loadPage('publications')">📄 Публікації</a>
+          </li>
+          <li>
+            <a href="#" onclick="loadPage('messages')">💬 Повідомлення</a>
+          </li>
+          <li>
+            <a href="#" onclick="loadPage('settings')">⚙️ Налаштування</a>
+          </li>
+        </ul>
+      </aside>
+
+      <main id="content">
+        <h2>Ласкаво просимо до дашборду!</h2>
+        <p>Оберіть вкладку ліворуч, щоб розпочати роботу.</p>
+      </main>
     </div>
 
-    <div id="editModal" class="modal">
+    <footer>
+      <p>&copy; 2025 SciPaperManager. Усі права захищено.</p>
+    </footer>
+
+    <!-- Модальне вікно редагування профілю -->
+    <div id="editProfileModal" class="modal">
       <div class="modal-content">
         <span class="close" onclick="closeModal()">&times;</span>
-        <h3>Редагування</h3>
-        <input type="text" id="editInput" />
-        <button onclick="saveChanges()">Зберегти</button>
+        <h3>Редагувати профіль</h3>
+        <label>Завантажити новий аватар:</label>
+        <input type="file" id="editAvatar" />
+        <input type="text" id="editAffiliation" placeholder="Афіліація" />
+        <input type="text" id="editPosition" placeholder="Посада" />
+        <input type="text" id="editWebsite" placeholder="Персональний сайт" />
+        <input
+          type="text"
+          id="editGoogleScholar"
+          placeholder="Google Scholar ID"
+        />
+        <input type="text" id="editOrcid" placeholder="ORCID ID" />
+        <input type="text" id="editLinkedin" placeholder="LinkedIn ID" />
+        <button onclick="saveProfileChanges()">Зберегти</button>
       </div>
     </div>
-
-    <button id="logout">Вийти</button>
 
     <script src="dashboard.js"></script>
   </body>

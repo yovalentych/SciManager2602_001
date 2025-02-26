@@ -23,6 +23,12 @@ app.get('/', (req, res) => {
 const authRoutes = require('./routes/authRoutes');
 app.use('/api/auth', authRoutes);
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+app.use('/uploads', express.static('uploads'));
+
 // Підтягування папки PUBLIC
 app.use(express.static(path.join(__dirname, 'public')));
 

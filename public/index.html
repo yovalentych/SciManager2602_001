@@ -3,58 +3,63 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Авторизація</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>SciPaperManager – Головна</title>
+    <link rel="stylesheet" href="welcome.css" />
   </head>
   <body>
-    <h1>Ласкаво просимо до SciPaperManager</h1>
+    <header>
+      <h1>SciPaperManager</h1>
+      <p>
+        Інноваційний вебзастосунок для керування науковими публікаціями та
+        профілями дослідників.
+      </p>
+    </header>
 
-    <!-- Форма реєстрації -->
-    <h2>Реєстрація</h2>
-    <form id="registerForm">
-      <input type="text" id="regUsername" placeholder="Username" required />
-      <input type="email" id="regEmail" placeholder="Email" required />
-      <input type="password" id="regPassword" placeholder="Пароль" required />
-      <input
-        type="text"
-        id="regFirstNameUa"
-        placeholder="Ім'я (укр)"
-        required
-      />
-      <input
-        type="text"
-        id="regLastNameUa"
-        placeholder="Прізвище (укр)"
-        required
-      />
-      <input
-        type="text"
-        id="regFirstNameEn"
-        placeholder="Ім'я (лат)"
-        required
-      />
-      <input
-        type="text"
-        id="regLastNameEn"
-        placeholder="Прізвище (лат)"
-        required
-      />
-      <button type="submit">Зареєструватися</button>
-    </form>
+    <nav>
+      <a href="login.html" class="btn">Увійти</a>
+      <a href="register.html" class="btn">Зареєструватися</a>
+    </nav>
 
-    <!-- Форма логіну -->
-    <h2>Вхід</h2>
-    <form id="loginForm">
-      <input
-        type="text"
-        id="loginEmailOrUsername"
-        placeholder="Email або Username"
-        required
-      />
-      <input type="password" id="loginPassword" placeholder="Пароль" required />
-      <button type="submit">Увійти</button>
-    </form>
+    <section id="features">
+      <h2>Можливості SciPaperManager</h2>
+      <ul>
+        <li>Створення та редагування наукового профілю</li>
+        <li>Керування соціальними мережами для дослідників</li>
+        <li>Додавання афіліації та наукових інтересів</li>
+        <li>Захист даних та безпечний доступ</li>
+      </ul>
+    </section>
 
-    <script src="script.js"></script>
+    <section id="about">
+      <h2>Про проєкт</h2>
+      <p>
+        SciPaperManager – це платформа, створена для зручного керування
+        науковими профілями. Ми підтримуємо інтеграцію з Google Scholar, ORCID,
+        ResearchGate та іншими платформами.
+      </p>
+    </section>
+
+    <section id="contact">
+      <h2>Контакти</h2>
+      <p>Email: support@scipapermanager.com</p>
+      <p>
+        GitHub:
+        <a
+          href="https://github.com/yovalentych/SciPaperManager2602_001"
+          target="_blank"
+          >Наш репозиторій</a
+        >
+      </p>
+      <p>Соціальні мережі:</p>
+      <div class="social-links">
+        <a href="https://facebook.com" target="_blank">Facebook</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://linkedin.com" target="_blank">LinkedIn</a>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 SciPaperManager. Усі права захищено.</p>
+    </footer>
   </body>
 </html>
